@@ -10,8 +10,10 @@ import javax.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 
 @AllArgsConstructor
+@UtilityClass
 public class SimpleSendEmailUtil {
 
 	private String from = null;
@@ -19,7 +21,7 @@ public class SimpleSendEmailUtil {
 	private SmtpServerEnum smtpServer = null;
 
 	@SneakyThrows
-	public void send(String mailTo, String title, String text) {
+	public void send(String mail, String title, String text) {
 
 		Properties prop = new Properties();
 		prop.setProperty("mail.host", smtpServer.getHost());
@@ -33,7 +35,7 @@ public class SimpleSendEmailUtil {
 		session.setDebug(true);
 		Transport ts = session.getTransport();
 		ts.connect(smtpServer.getHost(), from, password);
-		Message message = createSimpleMail(session, from, mailTo, title, text);
+		Message message = createSimpleMail(session, from, mail, title, text);
 		ts.sendMessage(message, message.getAllRecipients());
 		ts.close();
 
