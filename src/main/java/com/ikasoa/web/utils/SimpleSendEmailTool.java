@@ -10,11 +10,9 @@ import javax.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
 
 @AllArgsConstructor
-@UtilityClass
-public class SimpleSendEmailUtil {
+public class SimpleSendEmailTool {
 
 	private String from = null;
 	private String password = null;
