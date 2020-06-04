@@ -43,7 +43,8 @@ public class SimpleSendEmailTool {
 			String mailText) throws Exception {
 		MimeMessage message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(mailfrom));
-		message.setRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
+        message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(mailTo));
+//		message.setRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
 		message.setSubject(mailTittle);
 		message.setContent(mailText, "text/html;charset=UTF-8");
 		return message;
