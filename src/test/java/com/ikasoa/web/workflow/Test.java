@@ -6,7 +6,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		Workflow workflow = new WorkflowImpl();
-		workflow.process(new TestNode1(), null);
+//		workflow.process(new TestNode1(), null);
+		workflow.process(new TestNodeX(), null);
 	}
 
 }

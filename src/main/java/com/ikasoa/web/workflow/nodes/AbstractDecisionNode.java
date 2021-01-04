@@ -1,29 +1,48 @@
-package com.ikasoa.web.workflow;
+package com.ikasoa.web.workflow.nodes;
+
+import java.util.Date;
+
+import com.ikasoa.web.workflow.Context;
+import com.ikasoa.web.workflow.DecisionNode;
+import com.ikasoa.web.workflow.Node;
+import com.ikasoa.web.workflow.NodeProcessException;
+import com.ikasoa.web.workflow.WorkflowRecord;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public abstract class AbstractDecisionNode implements DecisionNode {
+public abstract class AbstractDecisionNode extends AbstractNode implements DecisionNode {
 
-	abstract Boolean decide(Context context);
+	protected abstract Boolean decide(Context context);
+
+	@Override
+	public Node getNextNode() {
+		return null;
+	}
+
+	@Override
+	protected Context processNode(Context context) {
+		return null;
+	}
 
 	@Override
 	public Context process(Context context) throws NodeProcessException {
 		try {
-			Node node = decide(context) ? getTrueNode() : getFalseNode();
-			if (node != null)
-				return node.process(context);
-			else {
-				log.warn("[WFL]: Next Node is null!");
-				return null;
-			}
-		} catch (NodeProcessException e) {
-			try {
-				return getExceNode().process(context);
-			} catch (NodeProcessException ex) {
-				log.warn("[WFL]: " + ex.getMessage());
+			if (context == null)
+				context = new Context();
+			if (!context.addRecord(saveRecord(new WorkflowRecord(getName(), new Date(), this)))) {
+				log.error("[WFL]: Exceeds the maximum.");
 				return context;
 			}
+			Boolean r = decide(context);
+			if (r == null)
+				return exce(context);
+			context.setPreviousNode(this);
+			Node node = r ? getTrueNode() : getFalseNode();
+			return node != null ? node.process(context) : new SuspendNode().process(context);
+		} catch (NodeProcessException e) {
+			log.warn("[WFL]: " + e.getMessage());
+			return exce(context);
 		}
 	}
 

@@ -1,23 +1,24 @@
 package com.ikasoa.web.workflow.impl;
 
-import java.util.Date;
-
 import com.ikasoa.web.workflow.Context;
 import com.ikasoa.web.workflow.Node;
+import com.ikasoa.web.workflow.NodeProcessException;
 import com.ikasoa.web.workflow.Workflow;
-import com.ikasoa.web.workflow.WorkflowRecord;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class WorkflowImpl implements Workflow {
 
 	@Override
 	public Context process(Node node, Context context) {
-		context.addRecord(saveRecord(new WorkflowRecord(node.getName(), new Date(), node)));
-		return node.process(context);
-	}
-
-	@Override
-	public WorkflowRecord saveRecord(WorkflowRecord record) {
-		return record;
+		try {
+			log.info("[WFL]: Process Node '" + node.getName() + "'.");
+			return node.process(context);
+		} catch (NodeProcessException e) {
+			log.warn("[WFL]: " + e.getMessage());
+			return context;
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.ikasoa.web.workflow;
 
-import com.ikasoa.web.workflow.AbstractDecisionNode;
+import com.ikasoa.web.workflow.nodes.AbstractDecisionNode;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +29,10 @@ public class TestNodeX extends AbstractDecisionNode {
 
 	@Override
 	public Boolean decide(Context context) {
-		log.info("......" + getName());
+		if (context.getPreviousNode() != null)
+			log.info("......" + context.getPreviousNode().getName() + " -> " + getName());
+		else
+			log.info("......" + getName());
 		return true;
 	}
 

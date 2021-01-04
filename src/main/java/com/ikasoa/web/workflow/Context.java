@@ -10,11 +10,19 @@ import lombok.Data;
 @Data
 public class Context {
 
+	private final int MAX_SIZE = 100;
+
+	// 参数
 	private Map<String, Object> parameters;
 
+	private Node previousNode;
+
+	// 历史记录
 	private Queue<WorkflowRecord> records = new LinkedList<WorkflowRecord>();
 
 	public boolean addRecord(WorkflowRecord record) {
+		if (records.size() > MAX_SIZE)
+			return false;
 		return records.offer(record);
 	}
 

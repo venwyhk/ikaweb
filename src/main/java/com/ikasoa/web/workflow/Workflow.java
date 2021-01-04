@@ -5,6 +5,4 @@ public interface Workflow {
 
 	Context process(Node node, Context context);
 
-	WorkflowRecord saveRecord(WorkflowRecord record);
-
 }
