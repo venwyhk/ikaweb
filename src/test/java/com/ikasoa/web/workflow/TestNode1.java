@@ -18,11 +18,6 @@ public class TestNode1 extends AbstractNode {
 	}
 
 	@Override
-	public Node getExceNode() {
-		return null;
-	}
-
-	@Override
 	public Context processNode(Context context) {
 		if (context.getPreviousNode() != null)
 			log.info("......" + context.getPreviousNode().getName() + " -> " + getName());

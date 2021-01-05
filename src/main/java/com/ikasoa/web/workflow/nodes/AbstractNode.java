@@ -40,11 +40,12 @@ public abstract class AbstractNode implements Node {
 			if (context == null)
 				context = new Context();
 			if (!context.addRecord(saveRecord(new WorkflowRecord(getName(), new Date(), this)))) {
-				log.error("[WFL]: Exceeds the maximum.");
+				log.error("[WFL]: Exceeds the maximum!");
 				return context;
 			}
 			Context _context = processNode(context);
 			_context.setPreviousNode(this);
+			//
 			Node nextNode = getNextNode();
 			return nextNode != null ? nextNode.process(_context) : new SuspendNode().process(_context);
 		} catch (NodeProcessException e) {

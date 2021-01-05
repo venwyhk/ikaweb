@@ -1,11 +1,17 @@
 package com.ikasoa.web.workflow;
 
+import java.util.List;
+
 import com.ikasoa.web.workflow.nodes.AbstractDecisionNode;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class TestNodeX extends AbstractDecisionNode {
+
+	public TestNodeX(List<Node> nextNodeList) {
+		super(nextNodeList);
+	}
 
 	@Override
 	public String getName() {
@@ -18,22 +24,12 @@ public class TestNodeX extends AbstractDecisionNode {
 	}
 
 	@Override
-	public Node getTrueNode() {
-		return new TestNode2();
-	}
-
-	@Override
-	public Node getFalseNode() {
-		return new TestNode3();
-	}
-
-	@Override
-	public Boolean decide(Context context) {
+	public String decide(Context context) {
 		if (context.getPreviousNode() != null)
 			log.info("......" + context.getPreviousNode().getName() + " -> " + getName());
 		else
 			log.info("......" + getName());
-		return true;
+		return "TestNode1";
 	}
 
 }
