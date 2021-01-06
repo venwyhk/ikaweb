@@ -31,5 +31,10 @@ public class TestNodeX extends AbstractDecisionNode {
 			log.info("......" + getName());
 		return "TestNode1";
 	}
+	
+	@Override
+	protected Context saveNode(Node node, Context context) {
+		return context;
+	}
 
 }

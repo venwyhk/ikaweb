@@ -26,4 +26,9 @@ public class TestNode1 extends AbstractNode {
 		return context;
 	}
 
+	@Override
+	protected Context saveNode(Node node, Context context) {
+		return context;
+	}
+
 }

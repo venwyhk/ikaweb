@@ -7,6 +7,8 @@ public interface Node {
 
 	Context process(Context context) throws NodeProcessException;
 
+	Context next(Context context) throws NodeProcessException;
+
 	// 下一个节点
 	Node getNextNode();
 

@@ -25,5 +25,10 @@ public class TestNode2 extends AbstractNode {
 			log.info("......" + getName());
 		return context;
 	}
+	
+	@Override
+	protected Context saveNode(Node node, Context context) {
+		return context;
+	}
 
 }

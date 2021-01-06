@@ -30,4 +30,9 @@ public class SuspendNode implements Node {
 		return null;
 	}
 
+	@Override
+	public Context next(Context context) throws NodeProcessException {
+		return context;
+	}
+
 }

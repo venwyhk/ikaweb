@@ -11,14 +11,18 @@ import com.ikasoa.web.workflow.Node;
 import com.ikasoa.web.workflow.NodeProcessException;
 import com.ikasoa.web.workflow.WorkflowRecord;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@AllArgsConstructor
 @Slf4j
 public abstract class AbstractDecisionNode extends AbstractNode implements DecisionNode {
 
-	protected List<Node> nextNodeList = new ArrayList<>();
+	private List<Node> nextNodeList = new ArrayList<>();
+
+	private String nextNodeName;
+	
+	public AbstractDecisionNode(List<Node> nextNodeList) {
+		this.nextNodeList = nextNodeList;
+	}
 
 	protected abstract String decide(Context context);
 
@@ -41,13 +45,12 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 				log.error("[WFL]: Exceeds the maximum.");
 				return context;
 			}
-			String nextNodeName = decide(context);
+			nextNodeName = decide(context);
 			if (nextNodeName == null)
 				return exce(context);
 			context.setPreviousNode(this);
-
-			Node nextNode = getNextNode(nextNodeName);
-			return nextNode != null ? nextNode.process(context) : new SuspendNode().process(context);
+			saveNode(this, context);
+			return !isSingleStep ? next(context) : context;
 		} catch (NodeProcessException e) {
 			log.warn("[WFL]: " + e.getMessage());
 			return exce(context);
@@ -55,13 +58,17 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 	}
 
 	@Override
+	public Context next(Context context) throws NodeProcessException {
+		Node nextNode = getNextNode(nextNodeName);
+		return nextNode != null ? nextNode.process(context) : new SuspendNode().process(context);
+	}
+
 	public Node getNextNode(String name) {
 		if (StringUtil.isEmpty(name))
 			return null;
-		for (Node node : nextNodeList) {
+		for (Node node : nextNodeList)
 			if (name.equals(node.getName()))
 				return node;
-		}
 		log.warn("[WFL]: Node not found. (" + name + ")");
 		return null;
 	}

@@ -12,7 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AbstractNode implements Node {
 
+	public boolean isSingleStep = false;
+
 	protected abstract Context processNode(Context context);
+
+	protected abstract Context saveNode(Node node, Context context);
 
 	protected WorkflowRecord saveRecord(WorkflowRecord record) {
 		log.info("[WFL]: Record=" + record);
@@ -45,13 +49,18 @@ public abstract class AbstractNode implements Node {
 			}
 			Context _context = processNode(context);
 			_context.setPreviousNode(this);
-			//
-			Node nextNode = getNextNode();
-			return nextNode != null ? nextNode.process(_context) : new SuspendNode().process(_context);
+			saveNode(this, _context);
+			return !isSingleStep ? next(_context) : _context;
 		} catch (NodeProcessException e) {
 			log.warn("[WFL]: " + e.getMessage());
 			return exce(context);
 		}
+	}
+
+	@Override
+	public Context next(Context context) throws NodeProcessException {
+		Node nextNode = getNextNode();
+		return nextNode != null ? nextNode.process(context) : new SuspendNode().process(context);
 	}
 
 }
