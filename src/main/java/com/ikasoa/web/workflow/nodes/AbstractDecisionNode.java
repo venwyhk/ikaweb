@@ -19,7 +19,7 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 	private List<Node> nextNodeList = new ArrayList<>();
 
 	private String nextNodeName;
-	
+
 	public AbstractDecisionNode(List<Node> nextNodeList) {
 		this.nextNodeList = nextNodeList;
 	}
@@ -49,7 +49,10 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 			if (nextNodeName == null)
 				return exce(context);
 			context.setCurrentNode(this);
-			saveNode(this, context);
+			if (!saveNode(context)) {
+				log.error("[WFL]: Save node error!");
+				return exce(context);
+			}
 			return !isSingleStep ? next(context) : context;
 		} catch (NodeProcessException e) {
 			log.warn("[WFL]: " + e.getMessage());

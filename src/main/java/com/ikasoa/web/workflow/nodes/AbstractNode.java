@@ -16,7 +16,7 @@ public abstract class AbstractNode implements Node {
 
 	protected abstract Context processNode(Context context);
 
-	protected abstract Context saveNode(Node node, Context context);
+	protected abstract boolean saveNode(Context context);
 
 	protected WorkflowRecord saveRecord(WorkflowRecord record) {
 		log.info("[WFL]: Record=" + record);
@@ -49,7 +49,10 @@ public abstract class AbstractNode implements Node {
 			}
 			context = processNode(context);
 			context.setCurrentNode(this);
-			saveNode(this, context);
+			if (!saveNode(context)) {
+				log.error("[WFL]: Save node error!");
+				return exce(context);
+			}
 			return !isSingleStep ? next(context) : context;
 		} catch (NodeProcessException e) {
 			log.warn("[WFL]: " + e.getMessage());
