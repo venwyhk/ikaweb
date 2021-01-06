@@ -15,7 +15,7 @@ public class Context {
 	// 参数
 	private Map<String, Object> parameters;
 
-	private Node previousNode;
+	private Node currentNode;
 
 	// 历史记录
 	private Queue<WorkflowRecord> records = new LinkedList<WorkflowRecord>();

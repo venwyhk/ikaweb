@@ -48,7 +48,7 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 			nextNodeName = decide(context);
 			if (nextNodeName == null)
 				return exce(context);
-			context.setPreviousNode(this);
+			context.setCurrentNode(this);
 			saveNode(this, context);
 			return !isSingleStep ? next(context) : context;
 		} catch (NodeProcessException e) {

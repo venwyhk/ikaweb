@@ -19,8 +19,9 @@ public class TestNode2 extends AbstractNode {
 
 	@Override
 	public Context processNode(Context context) {
-		if (context.getPreviousNode() != null)
-			log.info("......" + context.getPreviousNode().getName() + " -> " + getName());
+//		isSingleStep = true;
+		if (context.getCurrentNode() != null)
+			log.info("......" + context.getCurrentNode().getName() + " -> " + getName());
 		else
 			log.info("......" + getName());
 		return context;
@@ -28,6 +29,7 @@ public class TestNode2 extends AbstractNode {
 	
 	@Override
 	protected Context saveNode(Node node, Context context) {
+		log.info("save TestNode2");
 		return context;
 	}
 

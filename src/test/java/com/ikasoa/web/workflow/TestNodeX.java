@@ -25,8 +25,8 @@ public class TestNodeX extends AbstractDecisionNode {
 
 	@Override
 	public String decide(Context context) {
-		if (context.getPreviousNode() != null)
-			log.info("......" + context.getPreviousNode().getName() + " -> " + getName());
+		if (context.getCurrentNode() != null)
+			log.info("......" + context.getCurrentNode().getName() + " -> " + getName());
 		else
 			log.info("......" + getName());
 		return "TestNode1";

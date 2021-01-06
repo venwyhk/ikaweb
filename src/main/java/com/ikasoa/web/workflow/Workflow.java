@@ -1,7 +1,5 @@
 package com.ikasoa.web.workflow;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
@@ -14,9 +12,6 @@ public class Workflow {
 
 	// 当前节点
 	private Node currentNode;
-
-	// 执行记录
-	private List<WorkflowRecord> workflowRecordList;
 
 	public Workflow(String name, Node startNode) {
 		this.name = name;

@@ -47,10 +47,10 @@ public abstract class AbstractNode implements Node {
 				log.error("[WFL]: Exceeds the maximum!");
 				return context;
 			}
-			Context _context = processNode(context);
-			_context.setPreviousNode(this);
-			saveNode(this, _context);
-			return !isSingleStep ? next(_context) : _context;
+			context = processNode(context);
+			context.setCurrentNode(this);
+			saveNode(this, context);
+			return !isSingleStep ? next(context) : context;
 		} catch (NodeProcessException e) {
 			log.warn("[WFL]: " + e.getMessage());
 			return exce(context);
