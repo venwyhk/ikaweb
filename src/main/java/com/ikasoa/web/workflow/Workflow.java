@@ -18,4 +18,9 @@ public class Workflow {
 	// 执行记录
 	private List<WorkflowRecord> workflowRecordList;
 
+	public Workflow(String name, Node startNode) {
+		this.name = name;
+		this.startNode = startNode;
+	}
+
 }
