@@ -27,8 +27,8 @@ public class TestNode1 extends AbstractNode {
 	}
 
 	@Override
-	protected Context saveNode(Node node, Context context) {
-		return context;
+	protected boolean saveNode(Context context) {
+		return true;
 	}
 
 }

@@ -33,8 +33,8 @@ public class TestNodeX extends AbstractDecisionNode {
 	}
 	
 	@Override
-	protected Context saveNode(Node node, Context context) {
-		return context;
+	protected boolean saveNode(Context context) {
+		return true;
 	}
 
 }
