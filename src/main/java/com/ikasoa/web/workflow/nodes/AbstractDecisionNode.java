@@ -2,6 +2,7 @@ package com.ikasoa.web.workflow.nodes;
 
 import java.util.Date;
 
+import com.ikasoa.core.utils.ObjectUtil;
 import com.ikasoa.core.utils.StringUtil;
 import com.ikasoa.web.workflow.Context;
 import com.ikasoa.web.workflow.DecisionNode;
@@ -16,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class AbstractDecisionNode extends AbstractNode implements DecisionNode {
 
 	private String nextNodeName;
+
+	private NodeFactory nodeFactory;
 
 	protected abstract String decide(Context context);
 
@@ -41,6 +44,8 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 			nextNodeName = decide(context);
 			if (nextNodeName == null)
 				return exce(context);
+			if (nodeFactory == null)
+				nodeFactory = context.getNodeFactory();
 			context.setCurrentNode(this);
 			if (!saveNode(context)) {
 				log.error("[WFL]: Save node error!");
@@ -60,9 +65,9 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 	}
 
 	public Node getNextNode(String name) {
-		if (StringUtil.isEmpty(name))
+		if (StringUtil.isEmpty(name) || ObjectUtil.isNull(nodeFactory))
 			return null;
-		return NodeFactory.getNode(name);
+		return nodeFactory.getNode(name);
 	}
 
 }

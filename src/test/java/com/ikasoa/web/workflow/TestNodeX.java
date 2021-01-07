@@ -1,17 +1,11 @@
 package com.ikasoa.web.workflow;
 
-import java.util.List;
-
 import com.ikasoa.web.workflow.nodes.AbstractDecisionNode;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class TestNodeX extends AbstractDecisionNode {
-
-	public TestNodeX(List<Node> nextNodeList) {
-		super(nextNodeList);
-	}
 
 	@Override
 	public String getName() {

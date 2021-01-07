@@ -17,6 +17,8 @@ public class Context {
 
 	private Node currentNode;
 
+	private NodeFactory nodeFactory;
+
 	// 历史记录
 	private Queue<WorkflowRecord> records = new LinkedList<WorkflowRecord>();
 

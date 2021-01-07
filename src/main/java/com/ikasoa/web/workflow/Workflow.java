@@ -13,9 +13,12 @@ public class Workflow {
 	// 当前节点
 	private Node currentNode;
 
-	public Workflow(String name, Node startNode) {
+	private NodeFactory nodeFactory;
+
+	public Workflow(String name, Node startNode, NodeFactory nodeFactory) {
 		this.name = name;
 		this.startNode = startNode;
+		this.nodeFactory = nodeFactory;
 	}
 
 }

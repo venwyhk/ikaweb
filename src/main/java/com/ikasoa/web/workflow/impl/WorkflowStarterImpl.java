@@ -48,6 +48,10 @@ public class WorkflowStarterImpl implements WorkflowStarter {
 	private Context process(Workflow workflow, Node node, Context context) {
 		log.info("[WFL]: Process Node '" + node.getName() + "'.");
 		try {
+			if (context != null && context.getNodeFactory() == null)
+				context.setNodeFactory(workflow.getNodeFactory());
+			else
+				log.error("[WFL]: Node factory is null!");
 			context = node.process(context);
 			if (workflow != null)
 				workflow.setCurrentNode(context.getCurrentNode());
