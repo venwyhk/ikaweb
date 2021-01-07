@@ -6,15 +6,15 @@ import java.util.Map;
 
 public class NodeFactory {
 
-	Map<String, Node> nodeCache = new HashMap<>();
+	private static Map<String, Node> nodeCache = new HashMap<>();
 
-	public NodeFactory(List<Node> nodeList) {
+	public static void setNodes(List<Node> nodeList) {
 		nodeList.forEach(node -> {
 			nodeCache.put(node.getName(), node);
 		});
 	}
 
-	public Node getNode(String name) {
+	public static Node getNode(String name) {
 		return nodeCache.get(name);
 	}
 
