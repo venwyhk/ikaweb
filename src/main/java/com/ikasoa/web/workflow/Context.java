@@ -33,7 +33,7 @@ public class Context {
 		parameters.put(key, value);
 	}
 
-	public Object gutParameter(String key) {
+	public Object getParameter(String key) {
 		return parameters.get(key);
 	}
 
