@@ -33,4 +33,8 @@ public class Context {
 		parameters.put(key, value);
 	}
 
+	public Object gutParameter(String key) {
+		return parameters.get(key);
+	}
+
 }
