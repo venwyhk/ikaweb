@@ -13,7 +13,7 @@ public class TestNode2 extends AbstractNode {
 	}
 
 	@Override
-	public Node getNextNode() {
+	public Node getNextNode(Context context) {
 		return new TestNode3();
 	}
 

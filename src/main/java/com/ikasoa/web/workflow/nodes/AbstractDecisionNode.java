@@ -23,7 +23,7 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 	protected abstract String decide(Context context);
 
 	@Override
-	public Node getNextNode() {
+	public Node getNextNode(Context context) {
 		return null;
 	}
 

@@ -10,9 +10,9 @@ public interface Node {
 	Context next(Context context) throws NodeProcessException;
 
 	// 下一个节点
-	Node getNextNode();
+	Node getNextNode(Context context);
 
 	// 异常节点
-	Node getExceNode();
+	Node getExceNode(Context context);
 
 }

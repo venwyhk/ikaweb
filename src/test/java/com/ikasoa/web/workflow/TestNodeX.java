@@ -13,7 +13,7 @@ public class TestNodeX extends AbstractDecisionNode {
 	}
 
 	@Override
-	public Node getExceNode() {
+	public Node getExceNode(Context context) {
 		return null;
 	}
 

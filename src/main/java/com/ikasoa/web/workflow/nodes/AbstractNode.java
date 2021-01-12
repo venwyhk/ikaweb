@@ -25,7 +25,7 @@ public abstract class AbstractNode implements Node {
 
 	protected Context exce(Context context) {
 		try {
-			Node node = getExceNode();
+			Node node = getExceNode(context);
 			return node != null ? node.process(context) : context;
 		} catch (NodeProcessException e) {
 			log.warn("[WFL]: " + e.getMessage());
@@ -34,7 +34,7 @@ public abstract class AbstractNode implements Node {
 	}
 
 	@Override
-	public Node getExceNode() {
+	public Node getExceNode(Context context) {
 		return new SuspendNode();
 	}
 
@@ -62,7 +62,7 @@ public abstract class AbstractNode implements Node {
 
 	@Override
 	public Context next(Context context) throws NodeProcessException {
-		Node nextNode = getNextNode();
+		Node nextNode = getNextNode(context);
 		return nextNode != null ? nextNode.process(context) : new SuspendNode().process(context);
 	}
 

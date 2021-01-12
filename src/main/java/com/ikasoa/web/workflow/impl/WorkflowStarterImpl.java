@@ -28,7 +28,7 @@ public class WorkflowStarterImpl implements WorkflowStarter {
 			log.error("[WFL]: 'CurrentNode' is null");
 			return context;
 		}
-		Node nextNode = node.getNextNode();
+		Node nextNode = node.getNextNode(context);
 		if (nextNode == null) {
 			log.error("[WFL]: 'NextNode' is null");
 			return context;
