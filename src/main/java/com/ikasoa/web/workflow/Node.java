@@ -14,5 +14,7 @@ public interface Node {
 
 	// 异常节点
 	Node getExceNode(Context context);
+	
+	String[] nextNodeNames();
 
 }

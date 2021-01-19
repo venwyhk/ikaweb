@@ -31,5 +31,10 @@ public class TestNode3 extends AbstractNode {
 	protected boolean saveNode(Context context) {
 		return true;
 	}
+	
+	@Override
+	public String[] nextNodeNames() {
+		return null;
+	}
 
 }

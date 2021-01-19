@@ -35,4 +35,9 @@ public class SuspendNode implements Node {
 		return context;
 	}
 
+	@Override
+	public String[] nextNodeNames() {
+		return null;
+	}
+
 }

@@ -31,4 +31,9 @@ public class TestNodeX extends AbstractDecisionNode {
 		return true;
 	}
 
+	@Override
+	public String[] nextNodeNames() {
+		return null;
+	}
+
 }

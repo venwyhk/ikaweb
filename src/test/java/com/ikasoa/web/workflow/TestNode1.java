@@ -31,4 +31,9 @@ public class TestNode1 extends AbstractNode {
 		return true;
 	}
 
+	@Override
+	public String[] nextNodeNames() {
+		return null;
+	}
+
 }
