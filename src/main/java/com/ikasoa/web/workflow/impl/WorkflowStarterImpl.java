@@ -18,6 +18,7 @@ public class WorkflowStarterImpl implements WorkflowStarter {
 			log.error("[WFL]: 'StartNode' is null");
 			return context;
 		}
+		log.info("[WFL]: Process node : " + node.getName());
 		return process(workflow, node, context);
 	}
 
