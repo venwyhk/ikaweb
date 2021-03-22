@@ -120,7 +120,7 @@
         <dependency>
             <groupId>com.ikasoa</groupId>
             <artifactId>ikasoa-core</artifactId>
-            <version>0.6.3</version>
+            <version>0.6.2</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
