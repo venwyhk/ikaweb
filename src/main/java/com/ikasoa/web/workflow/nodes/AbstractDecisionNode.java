@@ -42,7 +42,6 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 				return context;
 			}
 			nextNodeName = decide(context);
-System.out.println("nextNodeName:" + nextNodeName);
 			if (nextNodeName == null)
 				return exce(context);
 			if (nodeFactory == null)
@@ -61,9 +60,7 @@ System.out.println("nextNodeName:" + nextNodeName);
 
 	@Override
 	public Context next(Context context) throws NodeProcessException {
-System.out.println("1nextNodeName:"+nextNodeName);
 		Node nextNode = getNextNode(nextNodeName);
-System.out.println("2nextNodeName:"+nextNode.getName());
 		return nextNode != null ? nextNode.process(context) : new SuspendNode().process(context);
 	}
 

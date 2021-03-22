@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ikasoa</groupId>
     <artifactId>ikaweb</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>jar</packaging>
     <name>Ikaweb</name>
     <inceptionYear>2020</inceptionYear>
@@ -25,11 +25,11 @@
             <organizationUrl>http://ikasoa.com/</organizationUrl>
         </developer>
     </developers>
-    <scm>
+    <!-- <scm>
         <connection>scm:git:git://github.com/venwyhk/ikasoa.git</connection>
         <developerConnection>scm:git:ssh://github.com:venwyhk/ikasoa.git</developerConnection>
         <url>http://github.com/venwyhk/ikasoa</url>
-    </scm>
+    </scm> -->
     <properties>
         <spring.version>5.2.5.RELEASE</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,7 +91,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
@@ -103,10 +103,10 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
-    <!--  <distributionManagement>
+    <!-- <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
@@ -120,7 +120,7 @@
         <dependency>
             <groupId>com.ikasoa</groupId>
             <artifactId>ikasoa-core</artifactId>
-            <version>0.6.2</version>
+            <version>0.6.3</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
