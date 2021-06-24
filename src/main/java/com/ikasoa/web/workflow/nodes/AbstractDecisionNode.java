@@ -29,7 +29,7 @@ public abstract class AbstractDecisionNode extends AbstractNode implements Decis
 
 	@Override
 	protected Context processNode(Context context) {
-		return null;
+		return context;
 	}
 
 	@Override
