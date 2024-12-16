@@ -38,7 +38,7 @@ public abstract class AbstractService {
 	}
 
 	protected String theDateTo23_59_59(String date) {
-		return StringUtil.isNotEmpty(date) ? date.split(" ")[0] + " 23:59:59" : date;
+		return StringUtil.isNotEmpty(date) ? StringUtil.merge(date.split(" ")[0], " 23:59:59") : date;
 	}
 
 }
